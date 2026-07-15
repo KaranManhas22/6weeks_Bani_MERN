@@ -10,18 +10,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: git library
+      - name: Checkout repository
         uses: actions/checkout@v4
-      - name: connection
+
+      - name: Deploy to Azure VM
         uses: appleboy/ssh-action@v1.2.0
-
         with:
-          host: ${{secrets.IP}}
-          username: ${{secrets.USERNAME}}
-          password: ${{secrets.PASSWORD}}
-
+          host: ${{ secrets.IP }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
           script: |
-           cd /home/azureuser/6weeks_Bani_MERN_frontend
+            cd /home/azureuser/6weeks_Bani_MERN_frontend
             git pull
-             npm install
-              pm2 restart frontend
+            npm install
+            npm run build
+            pm2 restart frontend
