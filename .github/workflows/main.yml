@@ -24,4 +24,6 @@ jobs:
             git pull
             npm install
             npm run build
-            pm2 restart frontend
+            sudo rm -rf /var/www/bani.website/*
+            sudo cp -r dist/* /var/www/bani.website/
+            sudo systemctl reload apache2
