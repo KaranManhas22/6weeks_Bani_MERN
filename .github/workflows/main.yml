@@ -21,9 +21,9 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           script: |
             cd /home/azureuser/6weeks_Bani_MERN_frontend
-            git pull
+            git pull origin main 
             npm install
-            npm run build
+            npm run build 
             sudo rm -rf /var/www/bani.website/*
             sudo cp -r dist/* /var/www/bani.website/
             sudo systemctl reload apache2
