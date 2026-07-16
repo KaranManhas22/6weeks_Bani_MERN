@@ -20,10 +20,8 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           script: |
-            cd /home/azureuser/6weeks_Bani_MERN_frontend
+            cd /home/azureuser/6weeks_Bani_MERN
             git pull origin main 
             npm install
             npm run build 
-            sudo rm -rf /var/www/bani.website/*
-            sudo cp -r dist/* /var/www/bani.website/
-            sudo systemctl reload apache2
+            pm2 start npm --name "Frontned" -- run dev
